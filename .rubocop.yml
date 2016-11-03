@@ -1,0 +1,68 @@
+# Common configuration.
+AllCops:
+  TargetRubyVersion: 2.0
+
+Style/Documentation:
+  # Setting to true requires that all classes have a comment above the
+  # class definition.
+  Enabled: false
+
+Style/IndentationConsistency:
+  # The difference between `rails` and `normal` is that the `rails` style
+  # prescribes that in classes and modules the `protected` and `private`
+  # modifier keywords shall be indented the same as public methods and that
+  # protected and private members shall be indented one step more than the
+  # modifiers. Other than that, both styles mean that entities on the same
+  # logical depth shall have the same indentation.
+  EnforcedStyle: rails
+  SupportedStyles:
+    - normal
+    - rails
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+  # If true, strings which span multiple lines using \ for continuation must
+  # use the same type of quotes on each line.
+  ConsistentQuotesInMultiline: false
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+
+Metrics/AbcSize:
+  # The ABC size is a calculated magnitude, so this number can be an Integer or
+  # a Float.
+  Max: 35
+
+Metrics/BlockLength:
+  CountComments: false  # count full line comments?
+  Max: 30
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+    - 'app/controllers/**.*'
+
+# Avoid complex methods.
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/ClassLength:
+  CountComments: false  # count full line comments?
+  Max: 150
+
+Metrics/ModuleLength:
+  CountComments: false  # count full line comments?
+  Max: 150
+
+Metrics/MethodLength:
+  CountComments: false  # count full line comments?
+  Max: 25
+
+Metrics/PerceivedComplexity:
+  Max: 12
