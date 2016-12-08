@@ -1,5 +1,8 @@
 require "bundler/gem_tasks"
+require "guard/rake_task"
 require "rake/testtask"
+
+Guard::RakeTask.new
 
 Rake::TestTask.new :test do |t|
   t.libs << "test"

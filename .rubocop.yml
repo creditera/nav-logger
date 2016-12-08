@@ -2,6 +2,10 @@
 AllCops:
   TargetRubyVersion: 2.0
 
+Style/FileName:
+  Exclude:
+    - 'lib/nav-logger.rb'
+
 Style/Documentation:
   # Setting to true requires that all classes have a comment above the
   # class definition.
