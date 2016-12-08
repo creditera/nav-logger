@@ -74,8 +74,13 @@ module Nav
                       level: severity,
                       ts: Time.now.to_f,
                       environment: environment,
-                      hostname: hostname
+                      hostname: hostname,
+                      pid: pid
           hash
+        end
+
+        def pid
+          @pid ||= Process.pid
         end
 
         def tag(severity)
