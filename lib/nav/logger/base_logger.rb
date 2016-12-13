@@ -4,7 +4,9 @@ module Nav
       attr_reader :fluent_logger
 
       def level
-        @level ||= ::Logger::DEBUG
+        return @level if defined? @level
+        self.level = ENV["LOG_LEVEL"] || "info"
+        @level
       end
 
       def level_name(lookup = level)
@@ -44,6 +46,15 @@ module Nav
         add ::Logger::FATAL, message, hash
       end
 
+      def post(tag, hash)
+        full_hash = generate_log_hash hash
+        @fluent_logger.post tag, full_hash
+      end
+
+      def log_tag(secondary_tag)
+        [app_tag, secondary_tag.downcase].compact.join "."
+      end
+
       private
 
         def add(severity, message, hash)
@@ -51,8 +62,13 @@ module Nav
           return true if severity < level
 
           severity_name = level_name severity
-          log_hash = generate_log_hash severity_name, message, hash
-          @fluent_logger.post tag(severity_name), log_hash
+
+          hash[:level] = severity_name
+          hash[:message] = message
+
+          log_hash = generate_log_hash hash
+
+          @fluent_logger.post log_tag(severity_name), log_hash
         end
 
         def app_tag
@@ -68,23 +84,16 @@ module Nav
           @hostname ||= Socket.gethostname
         end
 
-        def generate_log_hash(severity, message, input)
+        def generate_log_hash(input = {})
           hash = input.merge RequestStore.store
-          hash.merge! message: message,
-                      level: severity,
-                      ts: Time.now.to_f,
+          hash.merge! ts: Time.now.to_f,
                       environment: environment,
                       hostname: hostname,
                       pid: pid
-          hash
         end
 
         def pid
           @pid ||= Process.pid
-        end
-
-        def tag(severity)
-          [app_tag, severity.downcase].compact.join "."
         end
     end
   end
