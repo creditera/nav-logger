@@ -17,7 +17,7 @@ module Nav
         body ||= ""
         headers ||= {
           "X-Request-Id" => RequestStore[:request_id],
-          Rack::CONTENT_LENGTH => body.length
+          Rack::CONTENT_LENGTH => body.length.to_s
         }
         [status, headers, [body]]
       ensure
