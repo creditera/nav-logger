@@ -6,6 +6,7 @@ require "socket"
 require "nav/logger/base_logger"
 require "nav/logger/console_logger"
 require "nav/logger/default_logger"
+require "nav/logger/middleware"
 require "nav/logger/test_logger"
 require "nav/logger/version"
 
