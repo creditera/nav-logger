@@ -6,6 +6,7 @@ require "socket"
 require "nav/logger/base_logger"
 require "nav/logger/console_logger"
 require "nav/logger/default_logger"
+require "nav/logger/httparty_formatter"
 require "nav/logger/middleware"
 require "nav/logger/test_logger"
 require "nav/logger/version"
@@ -33,4 +34,10 @@ module Nav
       Logger::DefaultLogger.new
     end
   end
+end
+
+if defined? HTTParty
+  HTTParty::Logger.add_formatter :nav, Nav::Logger::HTTPartyFormatter
+  #HTTParty.logger Nav.logger, :debug, :nav
+  #HTTParty.headers "X-Request-Id" => RequestStore[:request_id]
 end
