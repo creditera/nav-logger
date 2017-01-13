@@ -4,6 +4,7 @@
 /Gemfile.lock
 /_yardoc/
 /pkg/
+/vendor/
 
 # Test files #
 /coverage

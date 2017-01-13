@@ -6,12 +6,12 @@ module Nav
       end
 
       def call(env)
-        setup_request_store
-        store_request_vars env
+        # setup_request_store
+        # store_request_vars env
         start_time = Time.now
-        status, headers, body = @app.call env
-        headers["X-Request-Id"] ||= RequestStore[:request_id]
-        [status, headers, body]
+        # status, headers, body = @app.call env
+        # headers["X-Request-Id"] ||= RequestStore[:request_id]
+        # [status, headers, body]
       rescue
         status ||= 500
         body ||= ""
@@ -26,19 +26,19 @@ module Nav
       end
 
       private
-        def store_request_vars(env)
-          RequestStore[:request_id] = env["HTTP_X_REQUEST_ID"] || SecureRandom.uuid
-          RequestStore[:session_id] = env["HTTP_X_SESSION_ID"] if env.key? "HTTP_X_SESSION_ID"
-        end
+        # def store_request_vars(env)
+        #   RequestStore[:request_id] = env["HTTP_X_REQUEST_ID"] || SecureRandom.uuid
+        #   RequestStore[:session_id] = env["HTTP_X_SESSION_ID"] if env.key? "HTTP_X_SESSION_ID"
+        # end
 
-        def setup_request_store
-          RequestStore.begin!
-        end
+        # def setup_request_store
+        #   RequestStore.begin!
+        # end
 
-        def clear_request_store
-          RequestStore.end!
-          RequestStore.clear!
-        end
+        # def clear_request_store
+        #   RequestStore.end!
+        #   RequestStore.clear!
+        # end
 
         def log_request(start_time, env, status, headers)
           rack_log_hash = {
