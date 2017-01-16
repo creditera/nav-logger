@@ -25,5 +25,3 @@ module Nav
     end
   end
 end
-
-require "nav/logger/rails/logger_tie" if defined?(::Rails)

@@ -11,7 +11,7 @@ require "nav/logger/middleware"
 require "nav/logger/test_logger"
 require "nav/logger/version"
 
-require "nav/logger/rails/logger_tie"
+require "nav/logger/rails/logger_tie" if defined?(::Rails)
 
 module Nav
   module_function
