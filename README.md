@@ -24,10 +24,10 @@ Or install it yourself as:
 
 After installing gem into rack app, add in the config.ru
 ```ruby
-use Nav::Logger::RequestTag
-use Nav::Logger::RequestLogger
+use Nav::Logger::Middleware::RequestTagger
+use Nav::Logger::Middleware::RequestLogger
 ```
-_Make sure RequestTag comes before RequestLogger_
+_Make sure RequestTagger comes before RequestLogger_
 
 ## Development
 

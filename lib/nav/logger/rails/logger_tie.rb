@@ -17,7 +17,7 @@ module Nav
           # will come back nil.
           app.config.middleware.insert_before(
             ::Rails::Rack::Logger,
-            Nav::Logger::RequestTag
+            Nav::Logger::Middleware::RequestTagger
           )
 
         end
