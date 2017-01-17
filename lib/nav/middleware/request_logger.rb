@@ -34,9 +34,23 @@ module Nav
             duration: Time.now - start_time,
             level: status_level(status)
           }
-
           tag = Nav.logger.log_tag "http"
           Nav.logger.post tag, rack_log_hash
+        end
+
+        def status_level(status)
+          return "ERROR" if status.nil?
+          case status.to_i
+          when 400..499 then "WARN"
+          when 500..599 then "ERROR"
+          else               "INFO"
+          end
+        end
+
+        def extract_content_length(headers)
+          return "-" if headers.nil?
+          value = headers[Rack::CONTENT_LENGTH] or return "-"
+          value.to_s == "0" ? "-" : value
         end
 
     end

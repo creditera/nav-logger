@@ -15,20 +15,20 @@ module Nav
         [status, headers, [body]]
       end
 
-    private
-      def setup_request_store
-        RequestStore.begin!
-      end
+      private
+        def setup_request_store
+          RequestStore.begin!
+        end
 
-      def store_request_var(env)
-        RequestStore[:request_id] = env["HTTP_X_REQUEST_ID"] || SecureRandom.uuid
-        RequestStore[:session_id] = env["HTTP_X_SESSION ID"] if env.key? "HTTP_X_SESSION_ID"
-      end
+        def store_request_var(env)
+          RequestStore[:request_id] = env["HTTP_X_REQUEST_ID"] || SecureRandom.uuid
+          RequestStore[:session_id] = env["HTTP_X_SESSION ID"] if env.key? "HTTP_X_SESSION_ID"
+        end
 
-      def clear_request_store
-        RequestStore.end!
-        RequestStore.clear!
-      end
+        def clear_request_store
+          RequestStore.end!
+          RequestStore.clear!
+        end
 
     end
   end
