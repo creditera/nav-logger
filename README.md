@@ -20,6 +20,15 @@ Or install it yourself as:
 
 ## Usage
 
+#### Rails
+
+If you only want to tag your Rails logs with request and session ids, you just need to include the gem in your gemfile.
+
+If you also want logs being sent to the aggregator, you need add the following to the application.rb:
+```ruby
+config.middleware.use Nav::Logger::RequestLogger
+```
+
 #### Rack
 
 After installing gem into rack app, add in the config.ru
