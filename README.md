@@ -12,15 +12,22 @@ gem "nav-logger"
 
 And then execute:
 
-    $ bundle
+`$ bundle`
 
 Or install it yourself as:
 
-    $ gem install nav-logger
+`$ gem install nav-logger`
 
 ## Usage
 
-TODO: Write usage instructions here
+#### Rack
+
+After installing gem into rack app, add in the config.ru
+```ruby
+use Nav::Logger::RequestTag
+use Nav::Logger::RequestLogger
+```
+_Make sure RequestTag comes before RequestLogger_
 
 ## Development
 
@@ -36,4 +43,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/credit
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
