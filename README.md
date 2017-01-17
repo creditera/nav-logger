@@ -12,15 +12,31 @@ gem "nav-logger"
 
 And then execute:
 
-    $ bundle
+`$ bundle`
 
 Or install it yourself as:
 
-    $ gem install nav-logger
+`$ gem install nav-logger`
 
 ## Usage
 
-TODO: Write usage instructions here
+#### Rails
+
+If you only want to tag your Rails logs with request and session ids, you just need to include the gem in your gemfile.
+
+If you also want logs being sent to the aggregator, you need add the following to the application.rb:
+```ruby
+config.middleware.use Nav::Logger::RequestLogger
+```
+
+#### Rack
+
+After installing gem into rack app, add in the config.ru
+```ruby
+use Nav::Logger::Middleware::RequestTagger
+use Nav::Logger::Middleware::RequestLogger
+```
+_Make sure RequestTagger comes before RequestLogger_
 
 ## Development
 
@@ -36,4 +52,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/credit
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
