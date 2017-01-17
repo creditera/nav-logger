@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-### Rails
+#### Rails
 
 If you only want to tag your Rails logs with request and session ids, you just need to include the gem in your gemfile.
 
