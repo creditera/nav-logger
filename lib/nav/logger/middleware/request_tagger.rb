@@ -1,6 +1,6 @@
 module Nav
   module Logger
-    class RequestTag
+    class RequestTagger
 
       def initialize(app)
         @app = app
