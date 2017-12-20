@@ -27,23 +27,23 @@ module Nav
       end
 
       def debug(message, hash = {})
-        add ::Logger::DEBUG, message, hash
+        add ::Logger::DEBUG, message, hash.dup
       end
 
       def info(message, hash = {})
-        add ::Logger::INFO, message, hash
+        add ::Logger::INFO, message, hash.dup
       end
 
       def warn(message, hash = {})
-        add ::Logger::WARN, message, hash
+        add ::Logger::WARN, message, hash.dup
       end
 
       def error(message, hash = {})
-        add ::Logger::ERROR, message, hash
+        add ::Logger::ERROR, message, hash.dup
       end
 
       def fatal(message, hash = {})
-        add ::Logger::FATAL, message, hash
+        add ::Logger::FATAL, message, hash.dup
       end
 
       def post(tag, hash)
