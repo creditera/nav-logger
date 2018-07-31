@@ -3,3 +3,7 @@ require "nav/logger"
 
 require "minitest/autorun"
 require "minitest/pride"
+
+Nav::Logger.configure do |config|
+  config.filter_keys = [:secret_key, :password]
+end

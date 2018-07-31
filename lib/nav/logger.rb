@@ -4,6 +4,7 @@ require "logger"
 require "socket"
 
 require "nav/logger/base_logger"
+require "nav/logger/configuration"
 require "nav/logger/console_logger"
 require "nav/logger/default_logger"
 require "nav/logger/file_logger"
@@ -37,6 +38,16 @@ module Nav
       Logger::TestLogger.new
     else
       Logger::DefaultLogger.new
+    end
+  end
+
+  module Logger
+    def self.configuration
+      @configuration ||= Nav::Logger::Configuration.new
+    end
+
+    def self.configure
+      yield configuration if block_given?
     end
   end
 end
