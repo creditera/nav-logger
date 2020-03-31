@@ -21,5 +21,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "fluent-logger", "~> 0.6.1"
-  spec.add_dependency "request_store", "~> 1.3.2"
+  spec.add_dependency "request_store", "~> 1.4"
 end
